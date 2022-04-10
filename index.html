@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class='headcontainer'>
+        <sections>
+            <inner-column>
+                <header>
+                    <h1>
+                        Daily Calorie Calculator
+                    </h1>
+                </header>
+            </inner-column>
+        </sections>
+    </div>
+
+    <div class='headcontainer'>
+        <sections>
+            <inner-column>
+                <navbar>
+                    <link1>
+                        nutrition info
+                    </link1>
+                    <link2>
+                        about calculator
+                    </link2>
+                    <link3>
+                        the mission
+                    </link3>
+                </navbar>
+            </inner-column>
+        </sections>
+    </div>
+
+    
+    <main>
+
+        <div class='bodycontainer'>
+            <sections>
+                <inner-column>
+                    <desc>
+                        <h1>
+                            hello, this is a public web tool that you can utilize to check how much you should be eating on a daily basis given your height, weight, and age.
+                            though this is a public tool, any information entered will not be stored or distributed. 
+                        </h1>
+                    </desc>
+                </inner-column>
+            </sections>
+        </div>
+
+        <div class='bodycontainer'>
+            <sections>
+                <inner-column>
+                    <calc>
+                        <h1>Fill out the form below.</h1>
+                        <label>Female:
+                            <input id="female" type="radio" name="gender" onchange="calsPerDay()">
+                        </label>
+                        <label>Male:
+                            <input id="male" type="radio" name="gender" onchange="calsPerDay()" checked>
+                        </label>
+                        <label>Age:
+                            <input id="age" type="number" oninput="calsPerDay()" value="50">
+                        years
+                        </label>
+                        <label>Height:
+                            <input id="height" type="number" oninput="calsPerDay()" value="70">
+                        in inches (12 inches=1 foot)
+                        </label>
+                        <label>Weight:
+                            <input id="weight" type="number" oninput="calsPerDay()" value="225">
+                        in pounds
+                        </label>
+                        <label>
+                            Base metabolic rate: <span id="totalCals"></span> kcal per day
+                        </label>
+                    </calc>
+                </inner-column>
+            </sections>
+        </div>
+
+        <div class='bodycontainer'>
+            <sections>
+                <inner-column>
+                    <result>
+
+                    </result>
+                </inner-column>
+            </sections>
+        </div>
+
+    </main>
+
+    <footer class='footcontainer'>
+        <inner-column>
+
+        </inner-column>
+    </footer>
+</body>
+<script>
+    function calsPerDay() {
+        function find(id) { return document.getElementById(id) }
+
+        var age = find("age").value
+        var height = find("height").value * 2.54
+        var weight = find("weight").value / 2.2
+        var result = 0
+        if (find("male").checked) 
+            result = 66.47 + (13.75 * weight) + (5.0 * height - (6.75 * age))
+        else if (find("female").checked)
+            result = 665.09 + (9.56 * weight) + (1.84 * height - (4.67 * age))
+        find("totalCals").innerHTML = Math.round( result )
+        }
+    calsPerDay()
+</script>
+</html>
